@@ -1,0 +1,258 @@
+API - Application programming interface
+
+Basically the JAR files. example calculator.jar files
+
+methods in the jar files are tested by API/Backend testing
+2 Systems(S1 & S2) communicate with each other using JSON/XML format
+S1 could be in C# and S2 could be in Java, interaction can be in JSON/XML formats
+ABC co., will provide API access calculator.jar and give 'authentication' to CLIENT(s) co., 
+So., ABC Co., will give one authentication key for each CLIENT Co., 
+all clients, will have seperate Authentication Key/Token Key (Unique)
+
+REQUST JASON Payload in return will ABC Co., give RESPONCE JASON Payload
+
+
+WEB SERVICES: Communication happening over the http protocol/Web Services (CRUD OPERATIONS - CREATE/GET/PUT/DELETE Requests comes from Travel Search Websites)
+Responce is given by the FLIGHT COMPANIES:
+TRAVEL SEARCH WEBSITE - Makemytrip.com/yatr.com/mikitravels
+FLIGHT COMPANIES - Indigo, SpiceJet, Emirates, AirAsia
+
+example: Getflightinfo()
+1. FLIGHT COMPANIES Request to get Authentication key/Token Keys
+2. Username/Password
+3. Reqest - JASON/XML
+4. HTTP Method -- CRUD operatins
+-- GET calls
+5. 
+
+SOAP API's are gone out of the market as they are XML based and HEAVY WEIGHT
+99% RESTAPI's are used in the market as they are JSON based and LIGHT WEIGHT & through WebServices
+
+1.SOAP - SIMPLE OBJECT ACCESS PROTOCOL
+is a protocol
+cant use REST because it is a protocol
+SOAP Uses services Interfaces to expose the business logic. like bank statements etc., 
+JAX-WS is the java API for SAOP web services
+SOAP defines standards to be strictly followed
+SOAP defines its own security
+SOAP permits XML data formats only
+SOAP is less preferred than REST
+
+2. REST - REpresentational State Transfer
+is a architectural style
+REST can use SOAP WEB SERVICES BECAUSE IT IS A CONCEPT OF ANY PROTOCOL LIKE http/soap
+REST uses 'URI'to expose business logic
+JAS-RS is the java API for RESTful web services
+REST does not follow any much standards like SOAP
+RESTful web services inherit security measures from the underlying transport
+REST requires less bandwidth and resources than SOAP
+REST permits different data formats such as plain text, HTML, XML, JSON etc., and these requests are called 
+'GET Request JSON' payload
+'GET Request XML' payload
+'UPDATE RESPONCE JSON' payload etc.,
+
+REST is more preferred than SOAP
+
+
+REST WEB SERVICES AUTOMATION - Part-2
+-------------------------------------
+CLIENT(S1) a Consumer --> SERVER (S2) a Producer  
+CRUD Operations (Create - POST/Retrieve - GET/Update - PUT/ Delete - DELETE)
+
+HTTP Request --> 
+1. >>URI = URL (EndPoint URL) + Service/API URL
+2. Headers
+3. Payloads (Put/Post Calls)
+
+HTTP Responses -->
+1. Status - 2500 OK
+2. Responce Payload
+3. String message - sucessful etc., 
+
+Payloads: 
+1. Create an Account -- POST Call
+Attributes as below: 
+>>JSON/XML
+Account ID = 1
+Account name = "Tom"
+Address = "New York"
+Account Type = "Savings"
+
+2. Get an account by ID/Name: 
+>>URI = URL (EndPoint URL) + Service/API URL
+>>Path Parameter
+>>Query Parameter
+>>Headers
+example URI: http://api.com/service/account/1 
+Its just a combination of 'URL' plus 'PathParameter' Plus 'QueryParameter'
+<URL><PathParameter><QueryParameter>
+
+3. Update an account (PUT)
+<<PUT internally calls POST only>>
+PUT is a comination of 'Create' * 'Update'
+Attributes as below: 
+>>Account id = "1"
+>>Account name = "Tom"
+>>Account Type = "Current"
+
+4. Delete an account (DELETE)
+DELETE is to delete request call from the client server
+JSON
+Attributes as below: 
+>>Account id = 
+>>Account Name = "Current"
+
+STATUS RESPONSE CODES: 
+----------------------
+200 - OK
+201 - CREATED
+400 - BAD REQUEST some attribute is missing.
+401 - Unauthorized (~Authentication Error)******* 
+404 - NOT FOUND - Account ID = 100 while 100 is not available (uri is not correct attributes )
+500 - Server Internal Error - some network issue/server internal error
+
+POSTMAN - userid/chandrauk
+Web based Postman access with all workspaces: Personal/Team
+https://web.postman.co/workspaces?type=personal
+
+https://reqres.in/
+https://reqres.in/api/users/2
+{"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}
+
+URI = URL(website of end point) + URL(REQUEST)
+URL(website of end point) = https://reqres.in/
+URL(REQUEST)              = /api/users?page=2
+WHERE ? = Query Parameter
+(Query Parameter is used to query any results)
+
+https://reqres.in/api/users?page=2
+
+Path Parameter: 
+https://reqres.in/api/users/2
+POST: PAYLOAD
+https://reqres.in/api/users
+1. Create POst URI
+2. Create Header with Atleast 1 Key & Value Example : Content-Type & application/json
+3. Create Body JSON Key/Value pair in string format
+4. Click on "Send" button
+5. Results will be displayed 
+Status : 201 Created
+Time: in milliseconds
+size : in bytes
+Responce of JSON file example as below: 
+{
+    "name": "Chandra",
+    "job": "Automation Tester",
+    "id": "287",
+    "createdAt": "2021-01-07T23:36:58.399Z"
+}
+You can now test with GET request as below: 
+https://reqres.in/api/users/287
+Responce will comeback as below: 
+{
+    "name": "Chandra",
+    "job": "Automation Tester",
+    "id": "287",
+    "createdAt": "2021-01-07T23:39:16.588Z"
+}
+
+***************************
+swagger - api documentation on your port
+***************************
+Swagger allows you to describe the structure of your APIs so that machines can read them
+
+MINI PROJECT: RESTAPI
+---------------------
+Designing a FRAMEWORK 
+1. Create Maven Project - org.com.restapitest
+
+2. create dependencies as below in pom.xml 
+>>httpclient
+>>httpcore
+>>json
+>>testng
+==>>> NO selenium/front end as COMPLETELY BACKEND TESTING
+
+3. Create a BASE PACKAGE under src/main/java >> namely 'com.qa.base' 
+>>Under this Base PACKAGE 
+>>Create a BaseClass >> TestBase.java class under src/main/java/com.qa.base
+
+4. For environment variable (URL,ServiceURL etc.,) >>Create one more package  >> namely 'com.qa.config'
+>>Under this config PACKAGE 
+>>Create a config file >>config.properties under src/main/java/com.qa.config
+
+5. Write the constructor code with try/catch for reading the properties file
+>>create new object for 'properties' class
+Note: Ensure the Properties Reference is created outside the try/cach block to acess the reference 'prop.'
+>>create new object for 'FileInputStream' and insert the path of config.properties directory
+>>pass the reference of FileInputStream into the properties.load 
+>>FileNotFoundException nad IOException with printStackTrace where necessary
+
+6. Create CLIENT PACKAGE to create the GET/PUT/POST/DELETE methods (classes)
+>>Create the Package named com.qa.client
+>>Under com.qa.client, create the java class>>RestClient.java 
+  (name can be ChandraClient/mikiClient etc.,)
+a>>In RestClient, create GET Method using HttpClients.createDefault()
+which returns ClosableHttpClient
+ClosableHttpClient httpClient = HttpClients.createDefault();
+
+
+hmrc api test scenarios:
+------------------------
+A. Using Postman, sonarcube, Yaml Files Specification/Requirements 
+1. Get with 'path Params' with wiremock (with & without validations)
+1a.Get with 'path Params' without wiremock (ie., End to End from dmz via corp & db) - With & Without Error Codes at various End Points
+1b.Get with 'Query Params' with wiremock(with & without validations)
+1c.Get with 'Query Params' without wiremock (ie., End to End from dmz via corp & db) - With & Without Error Codes at various End Points
+
+Similarly, 
+2. Post with path Params with wiremock (with & without validations)
+2a.Post with path Params without wiremock (ie., End to End from dmz via corp & db) - With & Without Error Codes at various End Points
+2b.Post with 'Query Params' with wiremock(with & without validations)
+2c.Post with 'Query Params' without wiremock (ie., End to End from dmz via corp & db) - With & Without Error Codes at various End Points
+
+Similarly, for PUT & DELETE
+3. PUT
+
+4. DELETE
+
+B. USING CUCUMBER, ABOVE SCENARIOS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+************************************
+***************************
+swagger - api documentation on your port
+***************************
+Swagger allows you to describe the structure of your APIs so that machines can read them
+
+**********SECURITY TESTING*******
+
+
+
+
+
+
+
