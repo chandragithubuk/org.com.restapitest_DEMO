@@ -18,8 +18,6 @@ public class GetAPITest extends TestBase{
 
     public GetAPITest() throws IOException {
     }
-
-
     @BeforeMethod
     public void setUp() throws IOException {
         System.out.println("1 Hello..");
@@ -27,21 +25,14 @@ public class GetAPITest extends TestBase{
         testBase = new TestBase(); // initialize the prop object
         //service URL & apiurl
 
-        /*serviceUrl = prop.getProperty("serviceURL");
-        apiurl= prop.getProperty("url");
-*/
-        //url = apiurl+serviceUrl;
-        //url = "https://reqres.in/api/users";
         url = prop.getProperty("url");
         System.out.println("The URI is: "+url);
     }
 
     @Test
     public void getAPITest() throws IOException {
-
         restClient = new RestClient();
         restClient.get(url);
-        //restClient.get("https://reqres.in/api/users");
 
     }
 }
