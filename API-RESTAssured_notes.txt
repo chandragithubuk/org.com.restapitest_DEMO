@@ -9,7 +9,7 @@ ABC co., will provide API access calculator.jar and give 'authentication' to CLI
 So., ABC Co., will give one authentication key for each CLIENT Co., 
 all clients, will have seperate Authentication Key/Token Key (Unique)
 
-REQUST JASON Payload in return will ABC Co., give RESPONCE JASON Payload
+REQUST JSON Payload in return will ABC Co., give RESPONCE JSON Payload
 
 
 WEB SERVICES: Communication happening over the http protocol/Web Services (CRUD OPERATIONS - CREATE/GET/PUT/DELETE Requests comes from Travel Search Websites)
@@ -65,7 +65,7 @@ HTTP Request -->
 3. Payloads (Put/Post Calls)
 
 HTTP Responses -->
-1. Status - 2500 OK
+1. Status - 200 OK, 400 Invalid Request, 500 Serever Errors
 2. Responce Payload
 3. String message - sucessful etc., 
 
@@ -249,6 +249,10 @@ swagger - api documentation on your port
 Swagger allows you to describe the structure of your APIs so that machines can read them
 
 **********SECURITY TESTING*******
+97d1d7ef0a8b95971d8ee33d7133eabc7689efed
+git token
+
+**************************************
 
 
 
